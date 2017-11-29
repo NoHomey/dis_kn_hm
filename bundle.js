@@ -114,7 +114,7 @@ const containerStyle = {
 const inputStyle = {
     borderWidth: 6,
     borderStyle: "outset",
-    borderColor: "#5a25b8",
+    borderColor: "#FF9800",
     width: 250
 };
 const epsilon = 0.0000001;
