@@ -21,7 +21,7 @@ const containerStyle: React.CSSProperties = {
 const inputStyle: React.CSSProperties = {
     borderWidth: 6,  
     borderStyle: "outset",
-    borderColor: "#ca0c3d",
+    borderColor: "#FF9800",
     width: 250
 };
 
