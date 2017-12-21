@@ -1,0 +1,355 @@
+\documentclass[12pt]{article}
+\usepackage[left=3cm,right=3cm,top=1cm,bottom=2cm]{geometry}
+\usepackage{amsmath,amsthm}
+\usepackage{lipsum}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{cancel}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[normalem]{ulem}
+    
+\newcommand{\R}{\mathbb{R}}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\setlength{\parindent}{0mm}
+        
+\title{Курсова задача №2}
+\author{Иво Стратев}
+        
+\begin{document}
+\maketitle
+
+$f(x) = \frac{x^2 - 4}{x}.e^{-\frac{5}{3x}} = (x - \frac{4}{x})e^{-\frac{5}{3x}}$ \\
+
+1. Допустимо множество \\
+
+$x \in \R \backslash \{0\}$ \\\\
+
+$\forall x \in \R \backslash \{0\} \; e^{-\frac{5}{3x}} > 0 \implies f(x) = 0 \iff \frac{x^2 - 4}{x} = 0 \iff x^2 - 4 = 0 \iff x = \pm 2$ \\\\
+
+2. $f'(x) = (1 + \frac{4}{x^2})e^{-\frac{5}{3x}} + (x - \frac{4}{x})e^{-\frac{5}{3x}}\frac{5}{3x^2} = \\\\
+= (1 + \frac{4}{x^2} + \frac{5}{3x} - \frac{20}{3x^3})e^{-\frac{5}{3x}} \\\\
+\forall x \in \R \backslash \{0\} \; e^{-\frac{5}{3x}} > 0 \implies f'(x) = 0 \iff 1 + \frac{4}{x^2} + \frac{5}{3x} - \frac{20}{3x^3} = 0 \iff \\\\
+\frac{3x^3 + 12x + 5x^2 - 20}{3x^3} = 0 \iff 3x^3 + 5x^2 + 12x - 20 = 0 $ \\\\
+
+Нека $p(x) = 3x^3 + 5x^2 + 5x^2 - 20 \implies sign(f(x)) = sign(p(x)).sign(x^3)  \\\\
+p(1) = 3 + 5 + 12 - 20 = 20 - 20 = 0 \implies (x - 1) \; | \; p(x) \\\\
+\tab 3x^3 + 5x^2 + 12x - 20 \; : \; x - 1 = 3x^2 + 8x + 20 \\
+- \\
+\tab 3x^3 - 3x^2 \\
+\tab \noindent\rule{4.1cm}{0.4pt} \\\\
+\tab \tab \; \; \; 8x^2 + 12x - 20 \\
+\tab - \\
+\tab \tab \; \; \; 8x^2 - 8x \\
+\tab \tab \; \; \; \noindent\rule{2.7cm}{0.4pt} \\\\
+\tab \tab \tab \; \; \; 20x - 20 \\
+\tab \tab - \\
+\tab \tab \tab \; \; \; 20x - 20 \\
+\tab \tab \; \; \; \noindent\rule{2.7cm}{0.4pt} \\\\
+\tab \tab \tab \tab \; \; \; 0 \\\\
+\implies p(x) = (x - 1)(3x^2 + 8x + 20)$ \\\\
+
+Нека $q(x) = 3x^2 + 8x + 20 \\\\
+D(q) = 64 - 240 < 0 \; \land \; 3 > 0 \implies \forall x \in \R \; q(x) > 0 \implies \\\\
+sign(f'(x)) = sign(x - 1).sign(x^3)$ \\\\
+
+\begin{tikzpicture}
+    \draw(0,0) -- (6,0);
+    \draw (2 cm,3pt) -- (2 cm,-3pt);
+    \draw (4 cm,3pt) -- (4 cm,-3pt);
+    \draw (0,0) node[left=3pt] {$f'(x)$};
+    \draw (1,0) node[above=3pt] {$+$};
+    \draw (2,0) node[] {$\times$};
+    \draw (2,0) node[above=3pt] {$0$};
+    \draw (3,0) node[above=3pt] {$-$};
+    \draw (4,0) node[above=3pt] {$1$};
+    \draw (5,0) node[above=3pt] {$+$};
+\end{tikzpicture} \quad $\implies$ \quad \begin{tikzpicture}
+    \draw(0,0) -- (6,0);
+    \draw (2 cm,3pt) -- (2 cm,-3pt);
+    \draw (4 cm,3pt) -- (4 cm,-3pt);
+    \draw (0,0) node[left=3pt] {$f'(x)$};
+    \draw (1,0) node[above=3pt] {$\nearrow$};
+    \draw (2,0) node[] {$\times$};
+    \draw (2,0) node[above=3pt] {$0$};
+    \draw (3,0) node[above=3pt] {$\searrow$};
+    \draw (4,0) node[above=3pt] {$1$};
+    \draw (5,0) node[above=3pt] {$\nearrow$};
+\end{tikzpicture} \\\\
+
+3. \\
+
+\begin{center}
+\begin{tabular}{||l | c | c | c | c | c | c||} 
+\hline
+$x$ & $-\infty$ & $0-0$ & $0$ & $0 + 0$ & $1$ & $\infty$ \\ [0.5ex]
+\hline\hline
+$f(x)$ & $-\infty \nearrow$ & $\infty \nearrow$ & $||$ & $0 \searrow$ & $-\frac{3}{e^{\frac{5}{3}}}$ & $\infty \nearrow$ \\
+\hline
+$f'(x)$ & $+$ & $+$ & $||$ & $-$ & $0$ & $+$ \\
+\hline
+\end{tabular}
+\end{center}
+
+
+$f(1) = (1 - 4)e^{-\frac{5}{3}} = -\frac{3}{e^{\frac{5}{3}}} \approx -0.56663 \\\\
+\forall x \in (0.5, \; 1) \; sign(f(x)) < 0 \; \land \; \forall x \in (1, \; 1.5) \; sign(f(x)) > 0 \; \land \; f(1) = 0 \implies $ \\\\
+$f(1)$ е локален минимум. \\\\ 
+$\lim_{x \to -\infty} f(x) = \lim_{x \to -\infty} (x - \frac{4}{x})e^{-\frac{5}{3x}}
+= \left[\lim_{x \to -\infty}  (x - \frac{4}{x})\right] . \left[\lim_{x \to -\infty} e^{-\frac{5}{3x}}\right] = \\\\
+= \left[\left(\lim_{x \to -\infty} x\right)  - \left(\lim_{x \to -\infty} \frac{4}{x}\right)\right] . \left[e^{\lim_{x \to -\infty}-\frac{5}{3x}}\right]
+= \left[\left(\lim_{x \to -\infty} x\right)  - 0\right] . e^0 = \\\\
+= \lim_{x \to -\infty} x = - \infty \\\\
+\lim_{x \to \infty} f(x) = \lim_{x \to \infty} (x - \frac{4}{x})e^{\frac{5}{3x}}
+= \left[\lim_{x \to \infty}  (x - \frac{4}{x})\right] . \left[\lim_{x \to \infty} e^{-\frac{5}{3x}}\right] = \\\\
+= \left[\left(\lim_{x \to \infty} x\right)  - \left(\lim_{x \to \infty} \frac{4}{x}\right)\right] . \left[e^{\lim_{x \to \infty}-\frac{5}{3x}}\right]
+= \left[\left(\lim_{x \to \infty} x\right)  - 0\right] . e^0 = \\\\
+= \lim_{x \to \infty} x = \infty \\\\
+\lim_{x \to 0 - 0} f(x) = \lim_{x \to 0 - 0} (x - \frac{4}{x})e^{-\frac{5}{3x}}
+= \left[\lim_{x \to 0 - 0}  (x - \frac{4}{x})\right] . \left[\lim_{x \to 0 - 0} e^{-\frac{5}{3x}}\right] = \\\\
+= \left[\left(\lim_{x \to 0 - 0} x\right)  - \left(\lim_{x \to 0 - 0} \frac{4}{x}\right)\right] . \left[e^{\lim_{x \to 0 - 0}-\frac{5}{3x}}\right]
+= \left[0^- - (-\infty)\right] . \left[e^\infty\right] = \\\\
+= \infty.\infty = \infty \\\\
+\lim_{x \to 0 + 0} f(x) = \lim_{x \to 0 + 0} (x - \frac{4}{x})e^{-\frac{5}{3x}}
+= \left[\lim_{x \to 0 + 0} \frac{x}{e^{\frac{5}{3x}}}\right] - 4\left[\lim_{x \to 0 + 0}\frac{\frac{1}{x}}{e^{\frac{5}{3x}}}\right] \\\\
+\lim_{x \to 0 + 0} \frac{x}{e^{\frac{5}{3x}}} = \lim_{x \to 0 + 0} \frac{1}{\frac{1}{x}e^{\frac{5}{3x}}}
+= \frac{1}{\left[\lim_{x \to 0 + 0}\frac{1}{x}\right]\left[\lim_{x \to 0 + 0}e^{\frac{5}{3x}}\right]} = \frac{1}{\infty.\infty} = \frac{1}{\infty} = 0 \\\\\\
+\lim_{x \to 0 + 0}\frac{\frac{1}{x}}{e^{\frac{5}{3x}}} = \frac{\infty}{\infty} \implies
+\lim_{x \to 0 + 0}\frac{\frac{1}{x}}{e^{\frac{5}{3x}}} = \lim_{x \to 0 + 0}\frac{-\frac{1}{x^2}}{e^{\frac{5}{3x}}.\left(-\frac{5}{3x^2}\right)} = \\\\
+= \lim_{x \to 0 + 0}\frac{3}{5e^{\frac{5}{3x}}} = \frac{3}{5}\frac{1}{e^{\lim_{x \to 0 + 0}\frac{5}{3x}}}
+= \frac{3}{5}\frac{1}{e^\infty} = \frac{3}{5}\frac{1}{\infty} = \frac{3}{5}.0 = 0 \implies \\\\
+\lim_{x \to 0 + 0} f(x) = 0 - 4.0 = 0 - 0 = 0$ \\\\
+
+\begin{tikzpicture}
+    \draw[->] (-8.5,0) -- (8.5,0) node[right] {$x$};
+  \draw[->] (0,-8.5) -- (0,8.5) node[above] {$f(x)$};
+  \draw(-8.5,-8.5) -- (-0.1, 8.5);
+  \draw(0.01, 0) -- (0.5, -0.2);
+  \draw(0.5, -0.2) -- (8.5, 5.5);
+\end{tikzpicture} \\\\
+
+4. $f''(x) = \left[\left(1 + \frac{4}{x^2} + \frac{5}{3x} - \frac{20}{3x^3}\right)e^{-\frac{5}{3x}}\right]' = \\\\
+= \left(-\frac{8}{x^3} - \frac{5}{3x^2} + \frac{20}{x^4}\right)e^{-\frac{5}{3x}}
++ \left(1 + \frac{4}{x^2} + \frac{5}{3x} - \frac{20}{3x^3}\right)e^{-\frac{5}{3x}}.\left(\frac{5}{3x^2}\right) = \\\\
+= e^{-\frac{5}{3x}}\left(-\frac{8}{x^3} - \frac{5}{3x^2} + \frac{20}{x^4} + \frac{5}{3x^2} + \frac{20}{3x^4} + \frac{25}{9x^3} - \frac{100}{9x^5}\right) = \\\\
+= e^{-\frac{5}{3x}}\left(-\frac{47}{9x^3} + \frac{80}{3x^4} - \frac{100}{9x^5}\right) = e^{-\frac{5}{3x}}\left(-\frac{47x^2 - 240x + 100}{9x^5}\right) \\\\
+\forall x \in \R \backslash \{0\} \; e^{-\frac{5}{3x}} > 0 \implies f''(x) = 0 \iff \frac{47x^2 - 240x + 100}{9x^5} = 0 \iff \\\\
+47x^2 - 240x + 100 = 0$ \\\\
+
+Нека $g(x) = 47x^2 - 240x + 100 \implies sign(f''(x)) = sign(g(x)).sign(x^5) = sign(x).sign(g(x)) \\\\
+D(g) = 240^2 - 47.400 = 400(24.6 - 47) = \\\\
+= 400(144 - 47) = 400.97 = 20^2.97 \implies \sqrt{D(g)} = 20\sqrt{97} \implies \\\\
+x_{1, \; 2} = \frac{240 \pm 20\sqrt{97}}{2.47} = \frac{120 \mp 10 \sqrt{97}}{47} = \frac{10}{47}(12 \mp \sqrt{97}) \approx 2.5532 \mp 2.0955 \implies \\\\
+x_1 \approx 0.4577 \; , \quad x_2 \approx 4.6487 \implies \\\\
+sign(f''(x)) = sign(x).sign(-(x - x_1)(x + x_2)) = -sign(x).sign((x - x_1)(x - x_2))$ \\\\
+
+$\implies$ \quad \begin{tikzpicture}
+    \draw(0,0) -- (8,0);
+    \draw (2 cm,3pt) -- (2 cm,-3pt);
+    \draw (4 cm,3pt) -- (4 cm,-3pt);
+    \draw (6 cm,3pt) -- (6 cm,-3pt);
+    \draw (0,0) node[left=3pt] {$f'(x)$};
+    \draw (1,0) node[above=3pt] {$+$};
+    \draw (2,0) node[] {$\times$};
+    \draw (2,0) node[above=3pt] {$0$};
+    \draw (3,0) node[above=3pt] {$-$};
+    \draw (4,0) node[above=3pt] {$x_1$};
+    \draw (5,0) node[above=3pt] {$+$};
+    \draw (6,0) node[above=3pt] {$x_2$};
+    \draw (7,0) node[above=3pt] {$-$};
+\end{tikzpicture} \\\\
+$\implies$ \quad \begin{tikzpicture}
+    \draw(0,0) -- (8,0);
+    \draw (2 cm,3pt) -- (2 cm,-3pt);
+    \draw (4 cm,3pt) -- (4 cm,-3pt);
+    \draw (6 cm,3pt) -- (6 cm,-3pt);
+    \draw (0,0) node[left=3pt] {$f'(x)$};
+    \draw (1,0) node[above=3pt] {$\smile$};
+    \draw (2,0) node[] {$\times$};
+    \draw (2,0) node[above=3pt] {$0$};
+    \draw (3,0) node[above=3pt] {$\frown$};
+    \draw (4,0) node[above=3pt] {$x_1$};
+    \draw (5,0) node[above=3pt] {$\smile$};
+    \draw (6,0) node[above=3pt] {$x_2$};
+    \draw (7,0) node[above=3pt] {$\frown$};
+\end{tikzpicture} \\\\
+
+5. \\
+
+\begin{center}
+    \begin{tabular}{||l | c | c | c | c | c | c | c | c||} 
+    \hline
+    $x$ & $-\infty$ & $0-0$ & $0$ & $0 + 0$ & $x_1$ & $1$ & $x_2$ & $\infty$ \\ [0.5ex]
+    \hline\hline
+    $f(x)$ & $-\infty \; \nearrow \; \smile$ & $\infty \; \nearrow \; \smile$ & $||$ & $0 \; \searrow \; \frown$ & $f(x_1)$ & $-\frac{3}{e^{\frac{5}{3}}}$ & $f(x_2)$ & $\infty \; \nearrow \; \frown$ \\
+    \hline
+    $f'(x)$ & $+$ & $+$ & $||$ & $-$ & $f'(x_1)$ & $0$ & $f'(x_2)$ & $+$ \\
+    \hline
+    $f''(x)$ & $+$ & $+$ & $||$ & $-$ & $0$ & $+$ & $0$ & $-$ \\
+    \hline
+\end{tabular}
+\end{center}
+
+$f(x_1) = f(\frac{10}{47}(12 - \sqrt{97})) = \left(\frac{10}{47}(12 - \sqrt{97}) - \frac{94}{5(12 - \sqrt{97})}\right)e^{-\frac{47}{6(12 - \sqrt{97})}} \approx -0.21709732 \\\\
+f(x_2) = f(\frac{10}{47}(12 + \sqrt{97})) = \frac{48}{235}(-11 + 3\sqrt{97})e^{-2 + \frac{\sqrt{97}}{6}} \approx 2.64686745142 \\\\
+f'(x_1) = f'(\frac{10}{47}(12 - \sqrt{97})) = -\frac{2}{25}(277 + 30\sqrt{97})e^{-2 - \frac{\sqrt{97}}{6}} \approx -1.20051176 \\\\
+f'(x_2) = f'(\frac{10}{47}(12 + \sqrt{97})) = \frac{2}{25}(30\sqrt{97} - 277)e^{\frac{\sqrt{97}}{6} - 2} \approx 1.0321711097 \\\\
+((T_1(f))(a))(x) = f(a) + f'(a)(x - a) \implies \\\\
+((T_1(f))(x_1))(x) = f(x_1) + f'(x_1)(x - x_1) \\\\
+((T_1(f))(x_2))(x) = f(x_2) + f'(x_2)(x - x_2) \\\\
+((T_1(f))(1))(x) = f(1) + f'(1)(x - a) = f(1) + 0 = -\frac{3}{e^{\frac{5}{3}}} \approx -0.5666268085\\\\
+((T_1(f))(-2))(x) = f(-2) + f'(-2)(x + 2) = 0 + (1 + 1 - \frac{5}{6} + \frac{5}{6})e^{\frac{5}{6}} = 2e^{\frac{5}{6}}(x + 2) \\\\
+((T_1(f))(2))(x) = f(2) + f'(2)(x - 2) = 0 + (1 + 1 + \frac{5}{6} - \frac{5}{6})e^{\frac{5}{6}} = 2e^{-\frac{5}{6}}(x - 2)$ \\\\
+
+\begin{tikzpicture}
+\begin{axis}[
+    ticks=none,
+    width=\textwidth,
+    samples=2000,
+    domain=-20:20,
+    restrict y to domain =-20:20,
+    axis x line=center,
+    axis y line=center,
+    xmin=-20,
+    xmax=20,
+    ymin=-20,
+    ymax=20,
+    xlabel={$x$},
+    ylabel={$f(x)$},
+    legend pos=south east]
+]
+\addplot[no markers, solid, smooth, red] plot (\x, {(\x - 4/\x) * exp((-5)/(3 * \x)});
+\legend{$f(x) = (x - \frac{4}{x})e^{-\frac{5}{3x}}$}
+\end{axis}
+\end{tikzpicture} \\\\
+
+
+\begin{tikzpicture}
+    \begin{axis}[
+        ticks=none,
+        width=\textwidth,
+        samples=2000,
+        domain=-20:20,
+        restrict y to domain =-20:20,
+        axis x line=center,
+        axis y line=center,
+        xmin=-20,
+        xmax=20,
+        ymin=-20,
+        ymax=20,
+        xlabel={$x$},
+        ylabel={$f(x)$},
+        legend pos=south east]
+    ]
+    \addplot[no markers, solid, smooth, red] plot (\x, {(\x - 4/\x) * exp((-5)/(3 * \x)});
+    \addplot[no markers, solid, smooth, cyan] plot (\x, {exp(-5/(3 * \x)) * (-20 + 12 * \x + 5 * \x^2 + 3 * \x^3))/(3 * \x^3)});
+    \addplot[no markers, solid, smooth, green] plot (\x, {-1 * exp(-5/(3 * \x)) * ((47 * \x^2 - 240 * \x + 100)/(9 * \x^5))});
+    \legend{$f(x)$,$f'(x)$,$f''(x)$}
+\end{axis}
+\end{tikzpicture} \\\\
+
+
+\begin{tikzpicture}
+    \begin{axis}[
+        ticks=none,
+        width=\textwidth,
+        samples=2000,
+        domain=-20:20,
+        restrict y to domain =-20:20,
+        axis x line=center,
+        axis y line=center,
+        xmin=-20,
+        xmax=20,
+        ymin=-20,
+        ymax=20,
+        xlabel={$x$},
+        ylabel={$f(x)$},
+        legend pos=south east]
+    \pgfmathsetmacro{\s}{10/47 * (12 - sqrt(97))};
+    \pgfmathsetmacro{\fs}{-0.21709732};
+    \pgfmathsetmacro{\dfs}{-1.20051176};
+    \pgfmathsetmacro{\t}{10/47 * (12 + sqrt(97))};
+    \pgfmathsetmacro{\ft}{2.64686745142};
+    \pgfmathsetmacro{\dft}{1.0321711097};
+    \addplot[no markers, solid, smooth, violet] plot (\x, {(\x - 4/\x) * exp((-5)/(3 * \x)});
+    \addplot[no markers, solid, smooth, green] plot (\x, {2 * exp(5 / 6) * (\x + 2)});
+    \addplot[no markers, solid, smooth, orange] plot (\x, {2 / exp(5 / 6) * (\x - 2)});
+    \addplot[no markers, solid, smooth, blue] plot (\x, {-3/(exp(5/3))});
+    \addplot[no markers, solid, smooth, magenta] plot (\x, {\fs + \dfs * (\x - \s)});
+    \addplot[no markers, solid, smooth, cyan] plot (\x, {\ft + \dft * (\x - \t)});
+    \legend{$f(x)$,$((T_1(f))(-2))(x)$,$((T_1(f))(2))(x)$,$((T_1(f))(1))(x)$,$((T_1(f))(x_1))(x)$,$((T_1(f))(x_2))(x)$}
+    \end{axis}
+\end{tikzpicture} \\\\
+
+
+\begin{tikzpicture}
+    \begin{axis}[
+        ticks=none,
+        width=\textwidth,
+        samples=2000,
+        domain=-5:5,
+        restrict y to domain =-5:5,
+        axis x line=center,
+        axis y line=center,
+        xmin=-5,
+        xmax=5,
+        ymin=-5,
+        ymax=5,
+        xlabel={$x$},
+        ylabel={$f(x)$},
+        legend pos=south east]
+    \pgfmathsetmacro{\s}{10/47 * (12 - sqrt(97))};
+    \pgfmathsetmacro{\fs}{-0.21709732};
+    \pgfmathsetmacro{\dfs}{-1.20051176};
+    \pgfmathsetmacro{\t}{10/47 * (12 + sqrt(97))};
+    \pgfmathsetmacro{\ft}{2.64686745142};
+    \pgfmathsetmacro{\dft}{1.0321711097};
+    \addplot[no markers, solid, smooth, violet] plot (\x, {(\x - 4/\x) * exp((-5)/(3 * \x)});
+    \addplot[no markers, solid, smooth, green] plot (\x, {2 * exp(5 / 6) * (\x + 2)});
+    \addplot[no markers, solid, smooth, orange] plot (\x, {2 / exp(5 / 6) * (\x - 2)});
+    \addplot[no markers, solid, smooth, blue] plot (\x, {-3/(exp(5/3))});
+    \addplot[no markers, solid, smooth, magenta] plot (\x, {\fs + \dfs * (\x - \s)});
+    \addplot[no markers, solid, smooth, cyan] plot (\x, {\ft + \dft * (\x - \t)});
+    \legend{$f(x)$,$((T_1(f))(-2))(x)$,$((T_1(f))(2))(x)$,$((T_1(f))(1))(x)$,$((T_1(f))(x_1))(x)$,$((T_1(f))(x_2))(x)$}
+    \end{axis}
+\end{tikzpicture} \\\\
+
+\begin{tikzpicture}
+    \begin{axis}[
+        ticks=none,
+        width=\textwidth,
+        samples=2000,
+        domain=-5:5,
+        restrict y to domain =-5:5,
+        axis x line=center,
+        axis y line=center,
+        xmin=-5,
+        xmax=5,
+        ymin=-5,
+        ymax=5,
+        xlabel={$x$},
+        ylabel={$f(x)$},
+        legend pos=south east]
+    \pgfmathsetmacro{\s}{10/47 * (12 - sqrt(97))};
+    \pgfmathsetmacro{\fs}{-0.21709732};
+    \pgfmathsetmacro{\dfs}{-1.20051176};
+    \pgfmathsetmacro{\t}{10/47 * (12 + sqrt(97))};
+    \pgfmathsetmacro{\ft}{2.64686745142};
+    \pgfmathsetmacro{\dft}{1.0321711097};
+    \addplot[no markers, solid, smooth, violet] plot (\x, {(\x - 4/\x) * exp((-5)/(3 * \x)});
+    \addplot[no markers, solid, smooth, lime] plot (\x, {exp(-5/(3 * \x)) * (-20 + 12 * \x + 5 * \x^2 + 3 * \x^3))/(3 * \x^3)});
+    \addplot[no markers, solid, smooth, yellow] plot (\x, {-1 * exp(-5/(3 * \x)) * ((47 * \x^2 - 240 * \x + 100)/(9 * \x^5))});
+    \addplot[no markers, solid, smooth, green] plot (\x, {2 * exp(5 / 6) * (\x + 2)});
+    \addplot[no markers, solid, smooth, orange] plot (\x, {2 / exp(5 / 6) * (\x - 2)});
+    \addplot[no markers, solid, smooth, blue] plot (\x, {-3/(exp(5/3))});
+    \addplot[no markers, solid, smooth, magenta] plot (\x, {\fs + \dfs * (\x - \s)});
+    \addplot[no markers, solid, smooth, cyan] plot (\x, {\ft + \dft * (\x - \t)});
+    \legend{$f(x)$,$f'(x)$,$f''(x)$,$((T_1(f))(-2))(x)$,$((T_1(f))(2))(x)$,$((T_1(f))(1))(x)$,$((T_1(f))(x_1))(x)$,$((T_1(f))(x_2))(x)$}
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}
