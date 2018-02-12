@@ -1,0 +1,133 @@
+\documentclass[a4paper,14pt]{extarticle}
+\usepackage[left=3cm,right=3cm,top=1cm,bottom=2cm]{geometry}
+\usepackage{amsmath,amsthm}
+\usepackage{lipsum}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[normalem]{ulem}
+    
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\setlength{\parindent}{0mm}
+        
+\title{Курсова задача №3}
+\author{Иво Стратев, Информатика, 2-ри курс, група 3, фак. № 45342}
+        
+\begin{document}
+\maketitle
+
+Като използвате подходящо развитие в степенен ред на подинтегралната функция пресметнете с
+точност $E = 10^{-4}$ определения интеграл 
+\begin{align*}
+\displaystyle\int_0^{\frac{1}{2}} \sqrt[4]{1 + x^2} \; dx
+\end{align*}
+
+\section*{Решение:}
+
+\begin{align*}
+    \sqrt[4]{1 + x} = (1 + x)^{\frac{1}{4}}
+    = \displaystyle\sum_{n = 0}^{\infty} \binom{\frac{1}{4}}{n}x^n \implies \\\\
+    \sqrt[4]{1 + x^2} = \displaystyle\sum_{n = 0}^{\infty} \binom{\frac{1}{4}}{n}x^{2n} = \\\\
+    = \displaystyle\sum_{n = 0}^{\infty} \frac{1}{n!}\displaystyle\prod_{k = 0}^{n - 1}\left(\frac{1}{4} - k\right) x^{2n} = \\\\
+    = \displaystyle\sum_{n = 0}^{\infty} \frac{1}{n!}\displaystyle\prod_{k = 0}^{n - 1}-\left(\frac{4k - 1}{4}\right) x^{2n} = \\\\
+    = \displaystyle\sum_{n = 0}^{\infty} \frac{1}{n!}\frac{(-1)^{n}}{4^n}\displaystyle\prod_{k = 0}^{n - 1}(4k - 1) x^{2n} = \\\\
+    = \displaystyle\sum_{n = 0}^{\infty} \frac{(-1)^{n}}{4^n n!}\displaystyle\prod_{k = 0}^{n - 1}(4k - 1)x^{2n} \implies
+\end{align*}
+\begin{align*}
+    \displaystyle\int_0^{\frac{1}{2}} \sqrt[4]{1 + x^2} \; dx = \displaystyle\int_0^{\frac{1}{2}} \displaystyle\sum_{n = 0}^{\infty} \frac{(-1)^{n}}{4^n n!}\displaystyle\prod_{k = 0}^{n - 1}(4k - 1) x^{2n} \; dx = \\\\
+    = \displaystyle\sum_{n = 0}^{\infty} \displaystyle\int_0^{\frac{1}{2}} \frac{(-1)^{n}}{4^n n!}\displaystyle\prod_{k = 0}^{n - 1}(4k - 1) x^{2n} \; dx = \\\\
+    = \displaystyle\sum_{n = 0}^{\infty} \frac{(-1)^{n}}{4^n n!}\displaystyle\prod_{k = 0}^{n - 1}(4k - 1) \displaystyle\int_0^{\frac{1}{2}} x^{2n} \; dx = \\\\
+    = \displaystyle\sum_{n = 0}^{\infty} \frac{(-1)^{n}}{4^n n!}\displaystyle\prod_{k = 0}^{n - 1}(4k - 1) \left(\frac{x^{2n + 1}}{2n + 1}\right)\Bigg|_0^{\frac{1}{2}} = \\\\
+    = \displaystyle\sum_{n = 0}^{\infty} \frac{(-1)^{n}}{4^n n! 2^{2n + 1} (2n + 1)}\displaystyle\prod_{k = 0}^{n - 1}(4k - 1) = \\\\
+    = \displaystyle\sum_{n = 0}^{\infty} \frac{(-1)^{n}}{2^{2n} n! 2^{2n + 1} (2n + 1)}\displaystyle\prod_{k = 0}^{n - 1}(4k - 1) = \\\\
+    = \displaystyle\sum_{n = 0}^{\infty} \frac{(-1)^{n}}{2^{2n + 2n + 1} n! (2n + 1)}\displaystyle\prod_{k = 0}^{n - 1}(4k - 1) = \\\\
+    = \displaystyle\sum_{n = 0}^{\infty} \frac{(-1)^{n}}{2^{4n + 1} n! (2n + 1)}\displaystyle\prod_{k = 0}^{n - 1}(4k - 1)
+\end{align*}
+Получихме, че \begin{align*}
+    \displaystyle\int_0^{\frac{1}{2}} \sqrt[4]{1 + x^2} \; dx = \displaystyle\sum_{n = 0}^{\infty} \frac{(-1)^{n}}{2^{4n + 1} n! (2n + 1)}\displaystyle\prod_{k = 0}^{n - 1}(4k - 1)
+\end{align*}
+или \begin{align*}
+    \displaystyle\int_0^{\frac{1}{2}} \sqrt[4]{1 + x^2} \; dx = \frac{1}{2} + \displaystyle\sum_{n = 1}^{\infty} \frac{(-1)^{n}}{2^{4n + 1} n! (2n + 1)}\displaystyle\prod_{k = 0}^{n - 1}(4k - 1) = \\\\
+    = \frac{1}{2} + \displaystyle\sum_{n = 1}^{\infty} \frac{(-1)^{n - 1}}{2^{4n + 1} n! (2n + 1)}(-1)\displaystyle\prod_{k = 0}^{n - 1}(4k - 1)
+\end{align*}
+Ще докажем, че реда \begin{align*}
+    \displaystyle\sum_{n = 1}^{\infty} \frac{(-1)^{n - 1}}{2^{4n + 1} n! (2n + 1)}(-1)\displaystyle\prod_{k = 0}^{n - 1}(4k - 1)
+\end{align*} е Лайбницовски ред.
+Първо да се обедим, че членовете му са с алтерниращи знаци.
+\begin{align*}
+    \forall n \in \N^+ \; -\displaystyle\frac{\displaystyle\prod_{k = 0}^{n - 1}(4k - 1)}{2^{4n + 1} n! (2n + 1)} = \\\\
+    =  -(4.0 - 1)\displaystyle\frac{\displaystyle\prod_{k = 1}^{n - 1}(4k - 1)}{2^{4n + 1} n! (2n + 1)} = \\\\
+    = \displaystyle\frac{\displaystyle\prod_{k = 1}^{n - 1}(4k - 1)}{2^{4n + 1} n! (2n + 1)} > 0 
+\end{align*}
+Тогава членовете на реда \begin{align*}
+    \displaystyle\sum_{n = 1}^{\infty} \frac{(-1)^{n - 1}}{2^{4n + 1} n! (2n + 1)}(-1)\displaystyle\prod_{k = 0}^{n - 1}(4k - 1) = \\\\
+    = \displaystyle\sum_{n = 1}^{\infty} \frac{(-1)^{n - 1}}{2^{4n + 1} n! (2n + 1)}\displaystyle\prod_{k = 1}^{n - 1}(4k - 1)
+\end{align*}
+са с алтерниращи знаци. Също така
+\begin{align*}
+    \frac{1}{2^{4n + 1}n!(2n + 1)} \leq \displaystyle\frac{\displaystyle\prod_{k = 1}^{n - 1}(4k - 1)}{2^{4n + 1}n!(2n + 1)} \leq \frac{4^nn!}{2^{4n + 1}n!(2n + 1)} = \frac{1}{2^{2n + 1}(2n + 1)} \implies \\\\
+    \displaystyle\lim_{n \to \infty} \frac{1}{2^{4n + 1}n!(2n + 1)} \leq \displaystyle\lim_{n \to \infty} \displaystyle\frac{\displaystyle\prod_{k = 1}^{n - 1}(4k - 1)}{2^{4n + 1}n!(2n + 1)} \leq \displaystyle\lim_{n \to \infty} \frac{1}{2^{2n + 1}(2n + 1)} \implies \\\\
+    0 \leq \displaystyle\lim_{n \to \infty} \displaystyle\frac{\displaystyle\prod_{k = 1}^{n - 1}(4k - 1)}{2^{4n + 1}n!(2n + 1)} \leq 0 \implies \\\\
+    \displaystyle\lim_{n \to \infty} \displaystyle\frac{\displaystyle\prod_{k = 1}^{n - 1}(4k - 1)}{2^{4n + 1}n!(2n + 1)} = 0
+\end{align*}
+Нека $a_n = \displaystyle\frac{\displaystyle\prod_{k = 1}^{n - 1}(4k - 1)}{2^{4n + 1}n!(2n + 1)}$.
+Ще покажем, че редицата $\{a_n\}_{n = 1}^\infty$ е монотонно намаляваща.
+\begin{align*}
+    a_{n + 1} = \displaystyle\frac{\displaystyle\prod_{k = 1}^{n}(4k - 1)}{2^{4(n + 1) + 1}(n + 1)!(2(n + 1) + 1)} = \\\\
+    = \displaystyle\frac{(4n - 1)(2n + 1)\displaystyle\prod_{k = 1}^{n - 1}(4k - 1)}{2^4(n + 1)(2n + 3)2^{4n + 1}n!(2n + 1)} = \\\\
+    = \frac{(4n - 1)(2n + 1)}{2^4(n + 1)(2n + 3)}a_n  = \\\\
+    = \frac{8n^2 + 2n - 1}{2^4(2n^2 + 5n + 3)}a_n \implies \\\\
+    a_n = \frac{2^4(2n^2 + 5n + 3)}{8n^2 + 2n - 1}a_{n + 1}
+\end{align*}
+\begin{align*}
+    2^5n^2 + 5.2^4n + 3.2^4 =  4(2^3n^2 + 2n - 1) + 10n + 16 \implies \\\\
+    a_n = \left[4 + \frac{10n + 16}{8n^2 + 2n - 1}\right]a_{n + 1}
+\end{align*}
+\begin{align*}
+    \forall n \in \N^+ \; \frac{10n + 16}{8n^2 + 2n - 1} > 0 \implies \\\\
+    \forall n \in \N^+ \; 4 + \frac{10n + 16}{8n^2 + 2n - 1} > 0 \implies \\\\
+    \forall n \in \N^+ \; a_n > a_{n + 1} \implies \{a_n\}_{n = 1}^\infty \downarrow
+\end{align*}
+Тогава реда  \begin{align*}
+    \displaystyle\sum_{n = 1}^{\infty} \frac{(-1)^{n - 1}}{2^{4n + 1} n! (2n + 1)}\displaystyle\prod_{k = 1}^{n - 1}(4k - 1)
+\end{align*} е Лайбницовски ред. Тогава
+\begin{align*}
+    \forall k \in \N^+ \; \left|\displaystyle\sum_{n = k + 1}^{\infty} \displaystyle\frac{(-1)^{n - 1}\displaystyle\prod_{m = 1}^{n - 1}(4m - 1)}{2^{4n + 1} n! (2n + 1)}\right|
+    < \left|\displaystyle\frac{(-1)^{k}\displaystyle\prod_{m = 1}^{k}(4m - 1)}{2^{4(k + 1) + 1} (k + 1)! (2(k + 1) + 1)}\right| \\\\
+    \implies \forall k \in \N^+ \; \left|\displaystyle\sum_{n = k + 1}^{\infty} \frac{(-1)^{n - 1}}{2^{4n + 1} n! (2n + 1)}\displaystyle\prod_{m = 1}^{n - 1}(4m - 1)\right|
+    < \displaystyle\frac{\displaystyle\prod_{m = 1}^{k}(4m - 1)}{2^{4k + 5}(k + 1)!(2k + 3)}
+\end{align*}
+Искаме да пресметнем интеграла \begin{align*}
+    \displaystyle\int_0^{\frac{1}{2}} \sqrt[4]{1 + x^2} \; dx = \frac{1}{2} + \displaystyle\sum_{n = 1}^{\infty} \frac{(-1)^{n - 1}}{2^{4n + 1} n! (2n + 1)}\displaystyle\prod_{k = 1}^{n - 1}(4k - 1)
+\end{align*} с точност $E = 10^{-4}$. Тогава търсим първото $k \in \N$,
+за което да е изпълнено неравенството
+\begin{align*}
+    \displaystyle\frac{\displaystyle\prod_{m = 1}^{k}(4m - 1)}{2^{4k + 5}(k + 1)!(2k + 3)} < 10^{-4} = 0.0001
+\end{align*}
+\begin{align*}
+    a_1 = \displaystyle\frac{\displaystyle\prod_{m = 1}^{0}(4m - 1)}{2^{4.1 + 1}(1)!(2.1 + 1)} = \frac{1}{2^{5}.3} \approx 0.0104166 
+\end{align*}
+Ако $k = 1$, то \begin{align*}
+    a_2 = \displaystyle\frac{\displaystyle\prod_{m = 1}^{k}(4m - 1)}{2^{4k + 5}(k + 1)!(2k + 3)} = \frac{3}{2^{9}(2)!5} = \frac{3}{2^{9}.2.5} = \frac{3}{2^{10}.5} \approx 0.0005859 > 0.0001 
+\end{align*}
+Ако $k = 2$, то \begin{align*}
+    a_3 = \displaystyle\frac{\displaystyle\prod_{m = 1}^{k}(4m - 1)}{2^{4k + 5}(k + 1)!(2k + 3)} = \frac{7.3}{2^{15}(3)!.7} = \frac{7.3}{2^{15}.2.3.7} = \frac{1}{2^{16}} \approx 0.0000152 < 0.0001 
+\end{align*}
+Тогава \begin{align*}
+    \displaystyle\int_0^{\frac{1}{2}} \sqrt[4]{1 + x^2} \; dx \approx \frac{1}{2} + \displaystyle\sum_{n = 1}^{2} (-1)^{n}\frac{(4n - 1)!!!!}{2^{4n + 1}n!(2n + 1)} \approx \\\\
+    \approx 0.5000000 + 0.0104166 - 0.0005859 + 0.0000152 = \\
+    = 0.5000000 \\
+    + 0.0104166 \\
+    - 0.0005859 \\
+    + 0.0000152 \\
+    = 0.5098459
+\end{align*}
+Следователно стойността на \begin{align*}
+    \displaystyle\int_0^{\frac{1}{2}} \sqrt[4]{1 + x^2} \; dx
+\end{align*} пресметната с точност $10^{-4}$ е $0.5098459$.
+\end{document}
