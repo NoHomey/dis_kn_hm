@@ -1,0 +1,152 @@
+\documentclass[a4paper,14pt]{extarticle}
+\usepackage[left=3cm,right=3cm,top=1cm,bottom=2cm]{geometry}
+\usepackage{amsmath,amsthm}
+\usepackage{lipsum}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[normalem]{ulem}
+        
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+    
+\setlength{\parindent}{0mm}
+            
+\title{Курсова задача №4}
+\author{Иво Стратев, Информатика, 2-ри курс, група 3, фак. № 45342}
+            
+\begin{document}
+\maketitle
+    
+Намерете във вид на степенен ред около т. $0$ решението на задача на Коши за даденото линейно
+ДУ от 2-ри ред и определете радиуса на сходимост на реда:
+\begin{align*}
+    \begin{cases}
+        y'' + 5xy' + 3 = 0 \\
+        y(0) = -5 \\
+        y'(0) = -3
+    \end{cases}
+\end{align*}
+
+\section*{Решение:}
+Решението на дадената задача на Коши търсим във вид на степенен ред около т. $0$. Тогава нека
+\begin{align*}
+    \forall x \in \R \; y(x) = \displaystyle\sum_{n = 0}^\infty a_n x^n
+\end{align*}
+За да намерим развитието на първата производна на $y$ диференцираме от двете страни и получаваме
+\begin{align*}
+    \forall x \in \R \; y'(x) = \left(\displaystyle\sum_{n = 0}^\infty a_n x^n\right)' = \displaystyle\sum_{n = 0}^\infty a_n (x^n)' = \displaystyle\sum_{n = 0}^\infty n a_n x^{n - 1}
+\end{align*}
+По аналогичен начин намираме развитието на втората производна на $y$
+\begin{align*}
+    \forall x \in \R \; y''(x) = \left(\displaystyle\sum_{n = 0}^\infty n a_n x^{n - 1}\right)' = \displaystyle\sum_{n = 1}^\infty n a_n (x^{n - 1})' = \displaystyle\sum_{n = 2}^\infty n (n - 1) a_n x^{n - 2}
+\end{align*}
+Сменяме индексите
+\begin{align*}
+    \forall x \in \R \; y''(x) = \displaystyle\sum_{n = 2}^\infty n (n - 1) a_{n + 2} x^{n - 2} = \displaystyle\sum_{n = 0}^\infty (n + 2) (n + 1) a_n x^n
+\end{align*}
+Заместваме в даденото линейно ДУ
+\begin{align*}
+    \forall x \in \R \;  0 = \displaystyle\sum_{n = 0}^\infty (n + 2) (n + 1) a_{n + 2} x^n + 5x\displaystyle\sum_{n = 0}^\infty n a_n x^{n - 1} + 3\displaystyle\sum_{n = 0}^\infty a_n x^n = \\\\
+    = \displaystyle\sum_{n = 0}^\infty (n + 2) (n + 1) a_{n + 2} x^n + \displaystyle\sum_{n = 0}^\infty 5 n a_n x^n + \displaystyle\sum_{n = 0}^\infty 3 a_n x^n = \\\\
+    = \displaystyle\sum_{n = 0}^\infty [(n + 2) (n + 1) a_{n + 2} + (5n + 3)a_n] x^n \implies \\\\
+    \forall n \in \N \; (n + 2) (n + 1) a_{n + 2} + (5n + 3)a_n = 0 \implies \\\\
+    \forall n \in \N \; a_{n + 2} = -\frac{5n + 3}{(n + 2) (n + 1)}a_n.
+\end{align*}
+Получихме, че за да имаме решение на даденото линейно ДУ във вид на степенен ред около т. $0$,
+то членовете на този ред трябва да изпълняват рекуретното отношение
+\begin{align*}
+    \forall n \in \N \; a_{n + 2} = -\frac{5n + 3}{(n + 2) (n + 1)}a_n
+\end{align*}
+От началното условие $y(0) = -5$ получаваме
+\begin{align*}
+    -5 = y(0) = \displaystyle\sum_{n = 0}^\infty a_n 0^n = a_0.
+\end{align*}
+Следователно намерихме, че $a_0 = -5$. По аналогичен начин използвайки условието $y'(0) = -3$ получаваме
+\begin{align*}
+    -3 = y'(0) = \displaystyle\sum_{n = 1}^\infty n a_n 0^{n - 1} = a_1.
+\end{align*}
+Следователно $a_1 = -3$. Тогава членовете на решението на поставената задача на Коши във вид на ред около т. $0$
+трябва да изпълняват следните условия
+\begin{align*}
+    a_0 = -5 \\
+    a_1 = -3 \\
+    \forall n \in \N \quad a_{n + 2} = -\frac{5n + 3}{(n + 2) (n + 1)}a_n.
+\end{align*}
+Пресмятеме първите няколко члена
+\begin{align*}
+    a_2 = -\frac{5.0 + 3}{(0 + 2)(0 + 1)}a_0 = -\frac{3}{2!}(-5) = \frac{15}{2!} \\\\
+    a_3 = -\frac{5.1 + 3}{(1 + 2)(1 + 1)}a_1 = -\frac{8}{3.2}(-3) = \frac{8.3}{3!} \\\\
+    a_4 = -\frac{5.2 + 3}{(2 + 2)(2 + 1)}a_2 = -\frac{13}{4.3}\frac{15}{2!} = -\frac{13.3.5}{4!} \\\\
+    a_5 = -\frac{5.3 + 3}{(3 + 2)(3 + 1)}a_3 = -\frac{18}{5.4}\frac{8.3}{3!} = -\frac{18.8.3}{5!} \\\\
+    a_6 = -\frac{5.4 + 3}{(4 + 2)(4 + 1)}a_4 = -\frac{23}{6.5}-\frac{13.3.5}{4!} = \frac{23.13.3.5}{6!} \\\\
+    a_7 = -\frac{5.5 + 3}{(5 + 2)(5 + 1)}a_5 = -\frac{28}{7.6}-\frac{18.8.3}{5!} = \frac{28.18.8.3}{7!}
+\end{align*}
+Лесно се съобразява, че
+\begin{align*}
+    \forall n \in \N \; a_{2n} = 5\frac{(-1)^{n + 1}}{(2n)!}\displaystyle\prod_{k = 0}^{n - 1}(5(2k) + 3) = 5\frac{(-1)^{n + 1}}{(2n)!}\displaystyle\prod_{k = 0}^{n - 1}(10k + 3) \\\\
+    \forall n \in \N \; a_{2n + 1} = 3\frac{(-1)^{n + 1}}{(2n + 1)!}\displaystyle\prod_{k = 0}^{n - 1}(5(2k + 1) + 3) = 3\frac{(-1)^{n + 1}}{(2n + 1)!}\displaystyle\prod_{k = 0}^{n - 1}(10k + 8)
+\end{align*}
+Тогава решението на дадената задача на Коши във вид на степенен ред около точката $0$ е
+\begin{align*}
+    \forall x \in \R \; y(x) = \displaystyle\sum_{n = 0}^\infty a_n x^n = \displaystyle\sum_{n = 0}^\infty a_{2n} x^{2n} + \displaystyle\sum_{n = 0}^\infty a_{2n + 1} x^{2n + 1} \\\\
+    \forall n \in \N \quad a_n = \begin{cases}
+        5\displaystyle\frac{(-1)^{\frac{n}{2} + 1}}{n!}\displaystyle\prod_{k = 0}^{\frac{n}{2} - 1}(10k + 3) &, \; n \equiv 0 \; (mod \; 2) \\\\
+        3\displaystyle\frac{(-1)^{\frac{n - 1}{2} + 1}}{n!}\displaystyle\prod_{k = 0}^{\frac{n - 1}{2} - 1}(10k + 8) &, \; n \equiv 1 \; (mod \; 2)
+    \end{cases}
+\end{align*}
+За да намерим радиуса на сходимост на реда, решение на задачата ще разгледаме по отделно реда на коефициентите с четен индекс и реда на коефициентите с нечетен.
+Разглеждаме степенния ред само на членовете с четен индекс
+\begin{align*}
+    \displaystyle\sum_{n = 0}^\infty a_{2n} x^{2n} = \displaystyle\sum_{n = 0}^\infty 5\frac{(-1)^{n + 1}}{(2n)!}\displaystyle\prod_{k = 0}^{n - 1}(10k + 3) x^{2n}
+\end{align*}
+За да определим радиуса на сходимост на този ред пресмятаме границата
+\begin{align*}
+    \displaystyle\lim_{n \to \infty} \left|\displaystyle\frac{5(-1)^{n + 1}\displaystyle\prod_{k = 0}^{n - 1}(10k + 3)(2n + 2)!}{(2n)!5(-1)^{n + 2}\displaystyle\prod_{k = 0}^{n}(10k + 3)}\right| = \\\\
+    = \displaystyle\lim_{n \to \infty} \displaystyle\frac{(2n + 2)(2n + 1)}{10n + 3} = \displaystyle\lim_{n \to \infty} \displaystyle\frac{4n^2 + 6n + 2}{10n + 3} = \\\\
+    = \displaystyle\lim_{n \to \infty} \displaystyle\frac{4n^2\left(1 + \frac{3}{2n} + \frac{1}{2n^2}\right)}{10n\left(1 + \frac{3}{10n}\right)} = \infty
+\end{align*}
+Следователно
+\begin{align*}
+    \forall x \in \R \; \exists \displaystyle\lim_{n \to \infty}\displaystyle\sum_{n = 0}^\infty a_{2n} x^{2n}.
+\end{align*}
+Разглеждаме степенния ред само на членовете с нечетен индекс
+\begin{align*}
+    \displaystyle\sum_{n = 0}^\infty a_{2n + 1} x^{2n + 1} = \displaystyle\sum_{n = 0}^\infty 3\frac{(-1)^{n + 1}}{(2n + 1)!}\displaystyle\prod_{k = 0}^{n - 1}(10k + 8) x^{2n + 1}
+\end{align*}
+За да определим радиуса на сходимост на този ред пресмятаме границата
+\begin{align*}
+    \displaystyle\lim_{n \to \infty} \left|\displaystyle\frac{3(-1)^{n + 1}\displaystyle\prod_{k = 0}^{n - 1}(10k + 8)(2n + 3)!}{(2n + 1)!3(-1)^{n + 3}\displaystyle\prod_{k = 0}^{n}(10k + 8)}\right| = \\\\
+    = \displaystyle\lim_{n \to \infty} \displaystyle\frac{(2n + 3)(2n + 2)}{10n + 8} = \displaystyle\lim_{n \to \infty} \displaystyle\frac{4n^2 + 8n + 6}{10n + 8} = \\\\
+    = \displaystyle\lim_{n \to \infty} \displaystyle\frac{4n^2\left(1 + \frac{2}{n} + \frac{3}{2n^2}\right)}{10n\left(1 + \frac{4}{5n}\right)} = \infty
+\end{align*}
+Следователно
+\begin{align*}
+    \forall x \in \R \; \exists \displaystyle\lim_{n \to \infty}\displaystyle\sum_{n = 0}^\infty a_{2n + 1} x^{2n + 1}.
+\end{align*}
+Получихме, че за всяко $x \in \R$ двата реда за сходящи. Така получаваме че
+\begin{align*}
+    \forall x \in \R \; \displaystyle\lim_{n \to \infty}\displaystyle\sum_{n = 0}^\infty a_n x^n =
+    \displaystyle\lim_{n \to \infty}\displaystyle\sum_{n = 0}^\infty a_{2n} x^{2n}
+    + \displaystyle\lim_{n \to \infty}\displaystyle\sum_{n = 0}^\infty a_{2n + 1} x^{2n + 1} \\\\
+    \implies \forall x \in \R \; \exists \displaystyle\lim_{n \to \infty}\displaystyle\sum_{n = 0}^\infty a_n x^n.
+\end{align*}
+Тоест получихме, че радиуса на сходимост реда около точката $0$ на даденото линейно ДУ е безкрайност.
+\section*{Отговори:}
+Решението във вид на степенен ред около т. $0$ на дадената задачата на Коши за линейно ДУ от 2-ри ред
+\begin{align*}
+    \begin{cases}
+        y'' + 5xy' + 3 = 0 \\
+        y(0) = -5 \\
+        y'(0) = -3
+    \end{cases}
+\end{align*} е реда
+\begin{align*}
+    \forall x \in \R \; y(x) = \displaystyle\sum_{n = 0}^\infty a_n x^n = \displaystyle\sum_{n = 0}^\infty a_{2n} x^{2n} + \displaystyle\sum_{n = 0}^\infty a_{2n + 1} x^{2n + 1} = \\\\
+    = \displaystyle\sum_{n = 0}^\infty 5\frac{(-1)^{n + 1}}{(2n)!}\displaystyle\prod_{k = 0}^{n - 1}(10k + 3) x^{2n}
+    + \displaystyle\sum_{n = 0}^\infty 3\frac{(-1)^{n + 1}}{(2n + 1)!}\displaystyle\prod_{k = 0}^{n - 1}(10k + 8) x^{2n + 1}.
+\end{align*}
+Радиуса на сходимост на този ред е безкрайност. Тоест реда е сходящ за всяка стойност на аргумента.
+\end{document}
